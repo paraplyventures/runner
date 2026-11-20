@@ -1,0 +1,26 @@
+# runner
+
+A GitHub Actions runner image for self-hosted runners (for example
+[Actions Runner Controller](https://github.com/actions/actions-runner-controller)
+scale sets) that behaves more like a GitHub-hosted runner.
+
+It is GitHub's [`actions-runner`](https://github.com/actions/runner/pkgs/container/actions-runner)
+image plus:
+
+- build tools: `build-essential` (make, gcc), `pkg-config`, `libssl-dev`;
+- common tools: git-lfs, curl, wget, jq, zip/unzip, xz, zstd, bzip2, rsync,
+  file, ssh, gnupg, netcat, dig, ping, sqlite3, python3 with venv and pip;
+- Docker Compose;
+- the libraries Playwright's Chromium needs, fonts and xvfb;
+- Go, the current release at build time;
+- `postgresql-client-18` from the PostgreSQL apt repository;
+- a UTF-8 locale (`LANG=C.UTF-8`), which Erlang, Python and others expect;
+- `/run/lock` (`/var/lock` points there), which only a booted system creates.
+
+```
+ghcr.io/paraplyventures/runner:2.338.2           # rebuilt weekly
+ghcr.io/paraplyventures/runner:2.338.2-YYYYMMDD  # one build
+```
+
+Rebuilt every Monday for security updates; Dependabot bumps the runner
+version. MIT licensed.
