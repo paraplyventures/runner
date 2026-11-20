@@ -16,6 +16,9 @@ image plus:
 - `postgresql-client-18` from the PostgreSQL apt repository;
 - a UTF-8 locale (`LANG=C.UTF-8`), which Erlang, Python and others expect;
 - `/run/lock` (`/var/lock` points there), which only a booted system creates.
+  ARC's Docker-in-Docker mode mounts a volume over `/var/run`, which hides it;
+  there, start the runner with
+  `bash -c "sudo install -d -m 1777 /run/lock; exec /home/runner/run.sh"`.
 
 ```
 ghcr.io/paraplyventures/runner:2.338.2           # rebuilt weekly
