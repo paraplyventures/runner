@@ -48,3 +48,12 @@ ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
 USER runner
+
+# Rust, as hosted runners have it: rustup and the current stable toolchain
+# with rustfmt and clippy, in the runner's home (the image is rebuilt weekly,
+# so stable stays current; jobs pinning another toolchain still get it from
+# rustup).
+RUN curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs \
+      | sh -s -- -y --no-modify-path --profile minimal --default-toolchain stable \
+          --component rustfmt,clippy
+ENV PATH=/home/runner/.cargo/bin:$PATH

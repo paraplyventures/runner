@@ -12,6 +12,7 @@ image plus:
   file, ssh, gnupg, netcat, dig, ping, sqlite3, python3 with venv and pip;
 - Docker Compose;
 - the libraries Playwright's Chromium needs, fonts and xvfb;
+- Rust: rustup and the current stable toolchain with rustfmt and clippy;
 - Go, the current release at build time;
 - `postgresql-client-18` from the PostgreSQL apt repository;
 - a UTF-8 locale (`LANG=C.UTF-8`), which Erlang, Python and others expect;
